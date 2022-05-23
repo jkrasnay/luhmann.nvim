@@ -1,0 +1,67 @@
+= luhmann.nvim
+
+`luhmann.nvim` is a Neovim plugin to integrate with the link:https://github.com/jkrasnay/luhmann[Luhmann] Zettelkasten tool.
+
+
+== Features
+
+*Open Index* +
+The `LuhOpenIndex` command opens the file `index.adoc` in the root of the Zettelkasten.
+
+
+== Planned Features
+
+*New Note* +
+Create a new note with a generated ID.
+
+*Open Diary Entry* +
+Commands to open a diary entry for the current date.
+
+*Go To Next/Previous Diary Entry*
+
+*Auto-save When Leaving Note*
+
+*Search for Note* +
+Invoke Telescope to search for notes.  This should be a full-text search,
+displaying the documents by title and a preview of the doc with the search terms
+highlighted.  Open the note when selected.
+
+*Insert Cross-reference* +
+Search for notes but instead of opening the selected note, insert a
+cross-reference to it at the cursor.
+
+*Find Back-links* +
+Search for notes that reference the current note, displaying the results in the
+quickfix list.
+
+
+== Installation
+
+This plugin requires
+link:https://github.com/neovim/neovim/releases/tag/v0.7.0[Neovim v0.7.0] or
+later. It also requires the
+link:https://github.com/nvim-lua/plenary.nvim[nvim-lua/plenary.nvim] plugin to
+be installed.
+
+Install with link:https://github.com/junegunn/vim-plug[vim-plug] as follows.
+
+----
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jkrasnay/luhmann.nvim'
+----
+
+You must configure `luhmann.nvim` with the correct URL to your Luhmann
+installation. `luhmann.nvim` does not provide any key mappings so you'll also
+have to define those.
+
+.Example Configuration
+----
+lua require('luhmann').setup({ luhmann_url='http://localhost:2022' })
+
+nnoremap <leader>ni :LuhOpenIndex<cr>
+----
+
+
+== License
+
+MIT
