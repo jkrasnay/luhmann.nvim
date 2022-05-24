@@ -74,19 +74,21 @@ end
 -- Implementation
 --
 
-M.index_file = function()
+function M.index_file()
   local config = load_config()
   return config["root-dir"].."/index.adoc"
 end
 
 
-------------------------------------------------------------
--- TESTING
---
-
---M.setup({luhmann_url="http://localhost:2022"})
---print(vim.inspect(load_config()))
---print(M.index_file())
---vim.api.nvim_create_user_command("LuhOpenIndex", function() vim.api.nvim_command("e "..require("luhmann").index_file()) end, {})
+function M.search(q)
+  local results = http_get({uri="/api/search",query={q=q}})
+  local qflist = {}
+  local root_dir = load_config()["root-dir"]
+  for _, result in ipairs(results) do
+    table.insert(qflist, {filename=root_dir.."/"..string.gsub(result.path, "html$", "adoc"), lnum=1, text=result.title})
+  end
+  vim.fn.setqflist(qflist)
+  vim.api.nvim_command("copen")
+end
 
 return M

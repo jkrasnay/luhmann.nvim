@@ -9,3 +9,4 @@ end
 vim.g.loaded_luhmann = 1
 
 vim.api.nvim_create_user_command("LuhOpenIndex", function() vim.api.nvim_command("e "..require("luhmann").index_file()) end, {})
+vim.api.nvim_create_user_command("LuhSearch", function(opts) require("luhmann").search(opts.args) end, {nargs=1})
