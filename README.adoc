@@ -6,7 +6,18 @@
 == Features
 
 *Open Index* +
-The `LuhOpenIndex` command opens the file `index.adoc` in the root of the Zettelkasten.
+Open the file `index.adoc` in the root of the Zettelkasten.
+
+----
+:LuhOpenIndex
+----
+
+*Search Notes* +
+Full-text search for notes. Results are sent to the quickfix list.
+
+----
+:LuhSearch apple AND orange
+----
 
 
 == Planned Features
